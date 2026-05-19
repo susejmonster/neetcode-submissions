@@ -3,11 +3,13 @@ class Solution:
         window = set()
 
         for i in range(len(nums)):
+            if i > k:##important
+                window.remove(nums[i-k-1])
+
             if nums[i] in window:
                 return True
             
             window.add(nums[i])
-            if len(window) > k:
-                window.remove(nums[i-k])
+            
 
         return False
