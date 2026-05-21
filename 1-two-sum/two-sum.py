@@ -1,12 +1,15 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        val_to_idx = {}
+        twopass = {}
         
-        for i, num in enumerate(nums):
-            diff = target - num
-            if diff in val_to_idx:
-                return [val_to_idx[diff], i]
-            val_to_idx[num] = i
+        for i in range(0,len(nums)):
+            twopass[nums[i]] = i
+
+        for i in range(0,len(nums)):
+            diff = target - nums[i]
+            if diff in twopass and twopass[diff] != i:
+                return [i,twopass[diff]]
+        
             
         
         return None
