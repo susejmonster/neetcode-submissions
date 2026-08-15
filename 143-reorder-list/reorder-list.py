@@ -8,45 +8,29 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-        if not head or not head.next:
-            return
-
-        # Step 1: Find Middle
-        slow = head
         fast = head
+        slow = head
 
-        while fast.next and fast.next.next:
-            slow = slow.next
+        while fast and fast.next:
             fast = fast.next.next
+            slow = slow.next
+        
 
-        # Step 2: Split List
-        second = slow.next
-        slow.next = None
+        prev,curr,n = None,slow.next,None
+        slow.next=None
+        while curr:
+            n = curr.next
+            curr.next = prev
+            prev=curr
+            curr=n
 
-        # Step 3: Reverse Second Half
-        prev = None
+        h1 = head
+        h2 = prev
 
-        while second:
-            nxt = second.next
-            second.next = prev
-            prev = second
-            second = nxt
-
-        second = prev
-
-        # Step 4: Merge
-        first = head
-
-        while second:
-            temp1 = first.next
-            temp2 = second.next
-
-            first.next = second
-            second.next = temp1
-
-            first = temp1
-            second = temp2
-
+        while h2:
+            tmp1,tmp2 = h1.next,h2.next
+            h1.next,h2.next = h2,tmp1
+            h1,h2 = tmp1,tmp2
         
 
 
