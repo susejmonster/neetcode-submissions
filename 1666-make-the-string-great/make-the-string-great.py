@@ -3,7 +3,7 @@ class Solution:
         stack = [s[0]]
 
         for i in range(1,len(s)):
-            if stack and abs(ord(s[i]) - ord(stack[-1])) == 32:
+            if stack and s[i].swapcase() == stack[-1]:
                 stack.pop()
             else:
                 stack.append(s[i])
