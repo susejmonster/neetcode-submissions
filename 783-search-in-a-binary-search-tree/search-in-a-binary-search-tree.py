@@ -13,7 +13,8 @@ class Solution:
             
             if node.val == val:
                 return node
-            left = find(node.left,val)
+            left = find(node.left,val) ##remember that value lesser on leftm value greater on right for DAC search on trees
+            
             right = find(node.right,val)
             return left or right
         found = find(root,val)
